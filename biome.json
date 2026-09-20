@@ -6,7 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!!**/dist", "!src/components/normalize.css"]
+    "includes": ["**", "!!**/dist", "!src/styles/normalize.css"]
   },
   "formatter": {
     "enabled": true,

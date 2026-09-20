@@ -1,4 +1,6 @@
 ---
+import '../styles/normalize.css';
+import '../styles/index.css';
 import { Scene } from "../components/Scene";
 ---
 
@@ -9,6 +11,6 @@ import { Scene } from "../components/Scene";
 		<title>kinect-stretch</title>
 	</head>
 	<body>
-		<Scene client:load/>
+		<Scene client:only/>
 	</body>
 </html>
