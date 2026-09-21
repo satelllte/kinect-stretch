@@ -64,7 +64,8 @@ type KinectPointsProps = {
 };
 
 export function KinectPoints({ isStatic }: KinectPointsProps) {
-  const texture = useKinectVideoTexture("/assets/video.mp4", isStatic);
+  const base = import.meta.env.BASE_URL;
+  const texture = useKinectVideoTexture(`${base}/assets/video.mp4`, isStatic);
   const geometry = useConst(createPointCloudGeometry);
   const materialRef = useRef<THREE.ShaderMaterial>(null);
 

@@ -1,8 +1,10 @@
 import { expect, type Page, test } from "@playwright/test";
 
+const BASE_URL = "http://localhost:4321/kinect-stretch";
+
 test.describe("main page", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:4321/");
+    await page.goto(`${BASE_URL}/`);
   });
 
   test("has title", async ({ page }) => {
@@ -20,7 +22,7 @@ test.describe("main page", () => {
 
 test.describe("debug page", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:4321/debug");
+    await page.goto(`${BASE_URL}/debug`);
   });
 
   test("has title", async ({ page }) => {
@@ -38,7 +40,7 @@ test.describe("debug page", () => {
 
 test.describe("static page", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:4321/static");
+    await page.goto(`${BASE_URL}/static`);
   });
 
   test("has title", async ({ page }) => {
@@ -49,7 +51,7 @@ test.describe("static page", () => {
     await expectThreeCanvas({ page });
     await expect(page).toHaveScreenshot();
 
-    await page.goto("http://localhost:4321/static?videoCurrentTime=0.5");
+    await page.goto(`${BASE_URL}/static?videoCurrentTime=0.5`);
     await expectThreeCanvas({ page });
     await expect(page).toHaveScreenshot();
   });

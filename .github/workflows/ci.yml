@@ -44,7 +44,7 @@ jobs:
 
   deploy:
     # if: github.ref == 'refs/heads/main' # TODO: UNCOMMENT BEFORE MERGE
-    needs: ci
+    needs: test
     runs-on: ubuntu-slim
     timeout-minutes: 5
     permissions:
