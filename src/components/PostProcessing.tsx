@@ -7,7 +7,9 @@ import type {
   ShaderPass,
   UnrealBloomPass,
 } from "three/examples/jsm/Addons.js";
+import { randFloat } from "three/src/math/MathUtils.js";
 import { useConst } from "./hooks/useConst";
+import { useInterval } from "./hooks/useInterval";
 import { stretchShader } from "./shaders/stretch-shader";
 
 // Details: https://r3f.docs.pmnd.rs/api/hooks#taking-over-the-render-loop
@@ -28,9 +30,11 @@ export function PostProcessing() {
   });
 
   const stretch = useControls("stretch", {
-    stretchX: { value: 1.0, min: 0, max: 1, step: 0.01 },
-    yMin: { value: 0.35, min: 0, max: 1, step: 0.01 },
-    yMax: { value: 0.65, min: 0, max: 1, step: 0.01 },
+    amplitudeMin: { value: 0.1, min: 0, max: 0.5, step: 0.01 },
+    amplitudeMax: { value: 0.3, min: 0, max: 0.5, step: 0.01 },
+    seed: { value: 0, min: 0, max: 100000, step: 0.01 },
+    stepsMin: { value: 10, min: 1, max: 100, step: 1 },
+    stepsMax: { value: 40, min: 1, max: 100, step: 1 },
   });
 
   useEffect(() => {
@@ -47,14 +51,20 @@ export function PostProcessing() {
     bloomPass.threshold = bloom.threshold;
   }, [bloom]);
 
-  useEffect(() => {
+  useInterval(() => {
     const stretchPass = stretchPassRef.current;
     if (!stretchPass) return;
 
-    stretchPass.uniforms.stretchX.value = stretch.stretchX;
-    stretchPass.uniforms.yMin.value = stretch.yMin;
-    stretchPass.uniforms.yMax.value = stretch.yMax;
-  }, [stretch]);
+    stretchPass.uniforms.amplitude.value = randFloat(
+      stretch.amplitudeMin,
+      stretch.amplitudeMax,
+    );
+    stretchPass.uniforms.seed.value = randFloat(0.0, 100000.0);
+    stretchPass.uniforms.steps.value = randFloat(
+      stretch.stepsMin,
+      stretch.stepsMax,
+    );
+  }, 400);
 
   useFrame((_, timeDelta) => {
     composerRef.current?.render(timeDelta);
