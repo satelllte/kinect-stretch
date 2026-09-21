@@ -32,7 +32,6 @@ export function PostProcessing() {
   const stretch = useControls("stretch", {
     amplitudeMin: { value: 0.1, min: 0, max: 0.5, step: 0.01 },
     amplitudeMax: { value: 0.3, min: 0, max: 0.5, step: 0.01 },
-    seed: { value: 0, min: 0, max: 100000, step: 0.01 },
     stepsMin: { value: 10, min: 1, max: 100, step: 1 },
     stepsMax: { value: 40, min: 1, max: 100, step: 1 },
   });
