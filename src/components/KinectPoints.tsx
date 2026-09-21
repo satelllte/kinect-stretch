@@ -52,7 +52,7 @@ const kinectFragmentShader = /* glsl */ `
 
   void main() {
     vec4 color = texture2D(map, vUv);
-    gl_FragColor = vec4(color.r, color.g, color.b, 0.2);
+    gl_FragColor = vec4(color.r, color.g, color.b, 0.3);
   }
 `;
 
