@@ -73,7 +73,7 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: {
     command: "pnpm preview",
-    url: "http://localhost:4321",
+    url: "http://localhost:4321/kinect-stretch",
     reuseExistingServer: !process.env.CI,
   },
 });
