@@ -22,7 +22,7 @@
     "three": "0.186.0"
   },
   "devDependencies": {
-    "@astrojs/react": "6.0.5",
+    "@astrojs/react": "6.0.6",
     "@biomejs/biome": "2.5.13",
     "@playwright/test": "1.63.0",
     "@types/node": "26.6.2",
