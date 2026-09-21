@@ -10,6 +10,7 @@
     "dev": "astro dev",
     "test:types": "tsc --noEmit",
     "test:lint": "biome check",
+    "test:e2e": "playwright test",
     "format": "biome format --write",
     "format:unsafe": "biome lint --write --unsafe",
     "build": "astro build",
@@ -27,6 +28,8 @@
   "devDependencies": {
     "@astrojs/react": "6.0.5",
     "@biomejs/biome": "2.5.13",
+    "@playwright/test": "1.63.0",
+    "@types/node": "26.6.2",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "@types/three": "0.186.0",
