@@ -45,7 +45,11 @@ test.describe("static page", () => {
     await expect(page).toHaveTitle("kinect-stretch - static");
   });
 
-  test("has rendered scene", async ({ page }) => {
+  test("has rendered scene @visual", async ({ page }) => {
+    await expectThreeCanvas({ page });
+    await expect(page).toHaveScreenshot();
+
+    await page.goto("http://localhost:4321/static?videoCurrentTime=0.5");
     await expectThreeCanvas({ page });
     await expect(page).toHaveScreenshot();
   });

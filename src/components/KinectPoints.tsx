@@ -23,6 +23,10 @@ function createPointCloudGeometry() {
 
 function useKinectVideoTexture(src: string, isStatic: boolean) {
   const video = useConst(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    let currentTime = Number(searchParams.get("videoCurrentTime"));
+    if (Number.isNaN(currentTime)) currentTime = 0.0;
+
     const v = document.createElement("video");
     v.loop = true;
     v.muted = true;
@@ -30,7 +34,7 @@ function useKinectVideoTexture(src: string, isStatic: boolean) {
     v.playsInline = true;
     v.src = src;
     v.playbackRate = 0.5;
-    v.currentTime = 0.5;
+    v.currentTime = currentTime;
     return v;
   });
 
