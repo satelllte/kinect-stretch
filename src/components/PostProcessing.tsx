@@ -54,15 +54,11 @@ export function PostProcessing() {
     const stretchPass = stretchPassRef.current;
     if (!stretchPass) return;
 
-    stretchPass.uniforms.amplitude.value = randFloat(
-      stretch.amplitudeMin,
-      stretch.amplitudeMax,
-    );
-    stretchPass.uniforms.seed.value = randFloat(0.0, 100000.0);
-    stretchPass.uniforms.steps.value = randFloat(
-      stretch.stepsMin,
-      stretch.stepsMax,
-    );
+    const { uniforms } = stretchPass;
+    const { amplitudeMin, amplitudeMax, stepsMin, stepsMax } = stretch;
+    uniforms.amplitude.value = randFloat(amplitudeMin, amplitudeMax);
+    uniforms.seed.value = randFloat(0.0, 100000.0);
+    uniforms.steps.value = randFloat(stepsMin, stepsMax);
   }, 400);
 
   useFrame((_, timeDelta) => {
