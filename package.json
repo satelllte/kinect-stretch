@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "test:types": "tsc --noEmit",
+    "test:types": "astro sync && tsc --noEmit",
     "test:lint": "biome check",
     "test:e2e": "playwright test",
     "format": "biome format --write",
