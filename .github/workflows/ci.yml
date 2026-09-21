@@ -37,9 +37,9 @@ jobs:
         run: pnpm run test:e2e --grep-invert @visual
       - name: Upload Pages artifact
         # if: github.ref == 'refs/heads/main' # TODO: UNCOMMENT BEFORE MERGE
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
-          path: dist
+          path: ./dist/
 
   deploy:
     # if: github.ref == 'refs/heads/main' # TODO: UNCOMMENT BEFORE MERGE
