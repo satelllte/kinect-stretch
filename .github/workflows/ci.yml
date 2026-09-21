@@ -11,9 +11,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  ci:
+  test:
     runs-on: ubuntu-slim
-    name: CI
     timeout-minutes: 5
     permissions:
       contents: read
@@ -38,16 +37,15 @@ jobs:
       - name: Test (e2e) [skip visual]
         run: pnpm run test:e2e --grep-invert @visual
       - name: Upload Pages artifact
-        if: github.ref == 'refs/heads/deploy_pages' # TODO: REVERT TO "main"
+        # if: github.ref == 'refs/heads/main' # TODO: UNCOMMENT BEFORE MERGE
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
   deploy:
-    if: github.ref == 'refs/heads/deploy_pages' # TODO: REVERT TO "main"
+    # if: github.ref == 'refs/heads/main' # TODO: UNCOMMENT BEFORE MERGE
     needs: ci
     runs-on: ubuntu-slim
-    name: Deploy
     timeout-minutes: 5
     permissions:
       pages: write
