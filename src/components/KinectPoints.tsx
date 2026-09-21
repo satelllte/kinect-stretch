@@ -21,7 +21,7 @@ function createPointCloudGeometry() {
   return geometry;
 }
 
-function useKinectVideoTexture(src: string) {
+function useKinectVideoTexture(src: string, isStatic: boolean) {
   const video = useConst(() => {
     const v = document.createElement("video");
     v.loop = true;
@@ -29,6 +29,8 @@ function useKinectVideoTexture(src: string) {
     v.crossOrigin = "anonymous";
     v.playsInline = true;
     v.src = src;
+    v.playbackRate = 0.5;
+    v.currentTime = 0.5;
     return v;
   });
 
@@ -40,20 +42,25 @@ function useKinectVideoTexture(src: string) {
   });
 
   useEffect(() => {
-    video.playbackRate = 0.5;
-    video.play();
+    if (!isStatic) {
+      video.play();
+    }
 
     return () => {
       video.pause();
       texture.dispose();
     };
-  }, [video, texture]);
+  }, [isStatic, video, texture]);
 
   return texture;
 }
 
-export function KinectPoints() {
-  const texture = useKinectVideoTexture("/assets/video.mp4");
+type KinectPointsProps = {
+  isStatic: boolean;
+};
+
+export function KinectPoints({ isStatic }: KinectPointsProps) {
+  const texture = useKinectVideoTexture("/assets/video.mp4", isStatic);
   const geometry = useConst(createPointCloudGeometry);
   const materialRef = useRef<THREE.ShaderMaterial>(null);
 
