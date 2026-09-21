@@ -7,16 +7,21 @@ import { PostProcessing } from "./PostProcessing";
 
 type SceneProps = {
   debug?: boolean;
+  isStatic?: boolean;
 };
 
-export function Scene({ debug = false }: SceneProps) {
+export function Scene({ debug = false, isStatic = false }: SceneProps) {
   return (
     <div className="container">
       <Leva hidden={!debug} />
       <Canvas camera={{ position: [-5.0, 2.28, -1.88] }}>
-        <OrbitControls enableZoom={false} enablePan={false} />
-        <KinectPoints />
-        <PostProcessing />
+        <OrbitControls
+          enabled={!isStatic}
+          enableZoom={false}
+          enablePan={false}
+        />
+        <KinectPoints isStatic={isStatic} />
+        <PostProcessing isStatic={isStatic} />
       </Canvas>
     </div>
   );
