@@ -19,7 +19,7 @@
     "leva": "0.10.1",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "three": "0.186.0"
+    "three": "0.186.1"
   },
   "devDependencies": {
     "@astrojs/react": "6.0.5",
