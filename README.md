@@ -4,6 +4,8 @@ A three.js scene of video points with stretch pass.
 
 <img alt="scene frame preview" src="./docs/frame.png" />
 
+> 📖 **Learn more:** [Stretching pixels with GLSL](https://satelllte.pages.dev/articles/stretching-pixels-with-glsl/) — a write-up of how the stretch effect works.
+
 ## Get started
 
 ```bash
